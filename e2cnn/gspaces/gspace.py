@@ -1,6 +1,3 @@
-
-from __future__ import annotations
-
 import e2cnn.kernels
 import e2cnn.group
 
