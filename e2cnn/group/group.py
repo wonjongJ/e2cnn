@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 from typing import Tuple, Callable, Iterable, List, Any, Dict
 
@@ -129,7 +128,7 @@ class Group(ABC):
         pass
 
     @abstractmethod
-    def subgroup(self, id) -> Tuple[e2cnn.group.Group, Callable, Callable]:
+    def subgroup(self, id):
         r"""
         Restrict the current group to the subgroup identified by the input ``id``.
 
@@ -149,7 +148,7 @@ class Group(ABC):
         pass
 
     @property
-    def irreps(self) -> Dict[int, e2cnn.group.IrreducibleRepresentation]:
+    def irreps(self) :
         r"""
         Dictionary containing all irreducible representations (:class:`~e2cnn.group.IrreducibleRepresentation`)
         instantiated for this group.
@@ -161,7 +160,7 @@ class Group(ABC):
         return self._irreps
 
     @property
-    def representations(self) -> Dict[int, e2cnn.group.Representation]:
+    def representations(self):
         r"""
         Dictionary containing all representations (:class:`~e2cnn.group.Representation`)
         instantiated for this group.
@@ -174,7 +173,7 @@ class Group(ABC):
 
     @property
     @abstractmethod
-    def trivial_representation(self) -> e2cnn.group.Representation:
+    def trivial_representation(self):
         r"""
         Builds the trivial representation of the group.
         The trivial representation is a 1-dimensional representation which maps any element to 1,
@@ -187,7 +186,7 @@ class Group(ABC):
         pass
 
     @abstractmethod
-    def irrep(self, *id) -> e2cnn.group.IrreducibleRepresentation:
+    def irrep(self, *id):
         r"""
 
         Builds the irreducible representation (:class:`~e2cnn.group.IrreducibleRepresentation`) of the group which is
@@ -207,7 +206,7 @@ class Group(ABC):
         pass
 
     @property
-    def regular_representation(self) -> e2cnn.group.Representation:
+    def regular_representation(self):
         r"""
         Builds the regular representation of the group if the group has a *finite* number of elements;
         returns ``None`` otherwise.
@@ -249,7 +248,7 @@ class Group(ABC):
                                                                              )
             return self.representations["regular"]
 
-    def quotient_representation(self, subgroup_id) -> e2cnn.group.Representation:
+    def quotient_representation(self, subgroup_id):
         r"""
         Builds the quotient representation of the group with respect to the subgroup identified by the
         input ``subgroup_id``.
@@ -295,7 +294,7 @@ class Group(ABC):
 
         return self.representations[name]
 
-    def induced_representation(self, subgroup_id, repr: e2cnn.group.Representation) -> e2cnn.group.Representation:
+    def induced_representation(self, subgroup_id, repr) :
         r"""
         Builds the induced representation from the input representation ``repr`` of the subgroup identified by
         the input ``subgroup_id``.
@@ -329,8 +328,8 @@ class Group(ABC):
         return self.representations[name]
 
     def _induced_from_irrep(self, subgroup_id: Tuple[float, int],
-                            repr: e2cnn.group.IrreducibleRepresentation,
-                            ) -> Tuple[List[e2cnn.group.IrreducibleRepresentation], np.ndarray, np.ndarray]:
+                            repr,
+                            ) :
     
         r"""
         Builds the induced representation from the input *irreducible* representation ``repr`` of the subgroup
@@ -356,7 +355,7 @@ class Group(ABC):
         else:
             return e2cnn.group.representation.build_induced_representation(self, subgroup_id, repr)
 
-    def restrict_representation(self, id, repr: e2cnn.group.Representation) -> e2cnn.group.Representation:
+    def restrict_representation(self, id, repr) :
         r"""
 
         Restrict the input :class:`~e2cnn.group.Representation` to the subgroup identified by ``id``.
@@ -434,7 +433,7 @@ class Group(ABC):
         pass
 
 
-def _induced_nonlinearities(repr: e2cnn.group.Representation):
+def _induced_nonlinearities(repr):
     
     supported_nonlinearities = []
     
